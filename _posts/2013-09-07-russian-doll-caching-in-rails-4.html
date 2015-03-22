@@ -1,0 +1,19 @@
+---
+layout: post
+title:  "Russian Doll Caching in Rails 4"
+date:   2013-09-7
+---
+
+<p>
+<a href="http://weblog.rubyonrails.org/2013/6/25/Rails-4-0-final/">Rails 4</a> nudges developers toward more pervasive use of fragment caching (and the so-called "russian doll caching" strategy of deeply nesting fragment caches) with the introduction of ActionView::Digestor and on-by-default appending of template digests to fragment cache keys. Though actually pretty simple in its implementation, this feature (paired with correct use of ActiveRecord's "touch" relation option) solves most of the formerly <em>enormous</em> headaches you'd encounter (and still do today with pretty much every other framework) trying to implement an advanced caching strategy with largely dynamic content. I've been working with this technique for more than half a year now (initially using the Rails 3 "cache_digests" gem , which implemented the same functionality now available through ActionView::Digestor in Rails 4). 
+</p>
+
+<p>
+At <a href="https://www.chloeandisabel.com/">Chloe + Isabel</a> we have weekly developer talks. Below are the slides from one I gave detailing the "russian doll" caching strategy in enough depth, I feel, to bring most Rails developers to a strong enough understanding to work with the techinique.
+</p>
+
+<br />
+
+<p>
+<iframe src="http://www.slideshare.net/slideshow/embed_code/25928453" width="597" height="486" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe>
+</p>

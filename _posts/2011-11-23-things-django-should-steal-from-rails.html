@@ -1,0 +1,37 @@
+---
+layout: post
+title:  "Things Django Should Steal from Rails"
+date:   2011-11-23 14:37:34
+categories: tech
+---
+
+<div class="image-wrap">
+  <img src="/images/posts/catburglar.jpg" />
+  <div class="caption">The Springfield cat burglar</div>
+</div>
+
+<p>
+  I adopted Django as my tool of choice for building web apps more than 2 years ago, in the days prior to the 1.0 release.&nbsp;&nbsp;Though the choice was initially motivated by nothing more than the fact that I could get free hosting on Google App Engine, over time I got very comfortable with the framework.&nbsp;&nbsp;That said, all of my projects were glorified toys, of which I was sole author and maintainer.&nbsp;&nbsp;Over the summer, I had the opportunity to work on a production Django app.&nbsp;&nbsp;Simultaneously, motivated by casual curiosity, I began to pick up Rails (this blog and my homepage, in fact, are a Rails app built in a couple of days).&nbsp;&nbsp;The most important revelation for me since I picked up Rails has been that, while certainly suitable for use in a production context, Django fails to cover a lot of the ground that I would expect a proper full-stack web framework to cover.&nbsp;&nbsp;For many this might be a good thing.&nbsp;&nbsp;Ultimately, when working with Django you&#39;ll know your deployment inside and out because you&#39;ve been responsible for selecting and integrating more of the components that comprise it.&nbsp;&nbsp;This post is, in fact, not a knock against Django at all.&nbsp;&nbsp;It&#39;s a great framework.&nbsp;&nbsp;That said, I felt it would be valuable to enumerate a few stand-out features of Rails that have, for me, made it the more probable choice for future projects.
+</p>
+<p>
+  <strong>Migrations</strong><br />
+  That by version 1.3 Django still doesn&#39;t have integrated schema migration management is astounding.&nbsp;&nbsp;I know that the common wisdom on this matter is &quot;use South&quot;, which would be great if South were stable.&nbsp;&nbsp;I&#39;d contend that it&#39;s inconsistent for the framework to ship with an ORM, but no way to dependably migrate your schema without either heading to your DBMS&#39; shell or relying on a third-party plugin.&nbsp;&nbsp;When constructing a Rails app, if you introduce a model using the standard generator, a new migration is dropped into the project tree for you -- a sensible accommodation.&nbsp;&nbsp;Migrations are a integral and rock-solid component of ActiveRecord.&nbsp;&nbsp;Bravo! &nbsp;That is all.<br />
+</p>
+<p>  
+  <strong>Sane Modularity and Dependency Management</strong><br />
+  Django has no built-in solution for managing dependencies, so it falls to developers to decide for themselves how to keep environments in sync.&nbsp;&nbsp;On the team I worked with last summer, we&#39;d keep a pip &quot;requirements.txt&quot; file somewhere near the top of the project tree and had scripts to insure that pip got run with said requirements file when appropriate.&nbsp;&nbsp;In Rails (3+), dependency management (using Bundler) is completely integrated.
+</p>
+<p>
+  The bigger shortcoming of Django, though, with respect to the use of external modules, is that the process is simply less graceful than it is with Rails.&nbsp;&nbsp;If you&#39;re integrating a module into a Django project that includes a backend, middleware, a template context processor, etc. you have to explicitly enumerate each in the appropriate place within your project&#39;s settings.py file (...not so DRY...).&nbsp;&nbsp;Rails plugins, primarily distributed as gems, can basically spider out into any necessary corner of your application, and require just a line in your Gemfile for installation.
+</p>
+<p>
+  <strong>Configuration and Environment Awareness</strong><br />
+  Rails assumes, from the get-go, that you&#39;ll have distinct production, testing, and deployment environments and makes toggling your app&#39;s configuration to accommodate these (and any number of other) environments transparent.&nbsp;&nbsp;Django makes no such assumptions, and you end up having to massage your settings.py file quite a bit to make your app play appropriately in its various environments.
+</p>
+<p>  
+  <strong>The Asset Pipeline</strong><br />
+  Okay, I almost didn&#39;t include this one because I know how controversial it is.&nbsp;&nbsp;In version 3.1, Rails introduced the so-called &quot;Asset Pipeline&quot;, which fully integrates Sprockets, HAML, SASS/SCSS and Coffeescript into core.&nbsp;&nbsp;I&#39;m not really sure what the controversy is all about: disabling the feature is as easy as setting a flag.&nbsp;&nbsp;When you enable it, though, you get completely automatic compilation of Coffeescript, SASS/SCSS and HAML assets, as well as minification and concatenation of assets for production.&nbsp;&nbsp;Additionally, you get asset path helper methods (which can find the path of all assets, not just those that were compiled), which means that you basically never have to hardcode paths to static assets anywhere (including, say, when you reference a font or image path in a stylesheet).&nbsp;&nbsp;From my perspective, this is a HUGE, HUGE win for Rails, and I&#39;d welcome something of this nature in Django core.<br />
+  <br />
+  I would have added model-level validation to this list, but it was actually added to Django v.1.2! All-in-all, none of these issues is a deal-breaker -- each is just a shortcoming that, were it addressed, would contribute significantly to the pleasure of working with Django. &nbsp;That said, my present project (which I&#39;ll be discussing here soon) is being built atop Rails.
+</p>
+</p>

@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "Pattern Vision Redux"
+date:   2014-09-11
+---
+
+<p>
+A couple years ago I read an article <a href="http://david.heinemeierhansson.com/">DHH</a> had posted to 37Signals' "Signal vs. Noise" blog called <a href="https://signalvnoise.com/posts/3341-pattern-vision">Pattern Vision</a>. I love that article not because it is at all profound. It isn't. Kind of the opposite. I love it because I could have written it. The ways of thinking described in it are overwhelmingly common in the work I come across and live with day to day. Every new codebase I encounter seems to carry some new dubiously-applied patterns, some new collection of less-than-idiomatic directories, modules and classes for me to discover nested within "/app".
+</p>
+
+<ul>
+  <li>contexts</li>
+  <li>habits</li>
+  <li>repos</li>
+  <li>notification_subscribers</li>
+  <li>policies</li>
+  <li>services</li>
+  <li>authorizers</li>
+  <li>interactors</li>
+</ul>
+
+<p>
+  Every item in the above list is a real example from the wild. 
+</p>
+
+<p>
+  Universally the consequence of introducing less-than-idiomatic patterns to an otherwise idiomatic Rails application has been degraded productivity, more work, more bugs. Ususally some justification is made along the lines of "Rails was built for a certain limited type of application, and our application is <strong>obviously</strong> not one of them. It's far more complicated." Ususally this is an excuse for not fully learning or attempting to apply Rails' idioms, or even for flat-out misunderstanding them. Usually the app has become so complicated because of a rolling snowball of decisions to make it so, not because it innately is. Usually the root of the problem is some type of Pattern Vision.
+</p>
+
+<p>
+  Some people fear ActiveRecord. I have sat through hours-long engineering meetings where a couple of developers have pontificated at length about how unhygenic it is to embed logic in your persistence layer. In fact, this isn't at all what ActiveRecord does &mdash; your persistence layer is the database, ActiveRecord sits atop it. It's ActiveRecord's job is to enforce your application's domain constraints in a single place.
+</p>
+
+<p>
+  I will gladly sacrifice some amount of theoretical "correctness" in architecture for a 10x reduction in quantity of code and complexity. Reductions of that scale are the wonderful reality that Rails brought to light by embracing the practical and not giving a fuck about architectural "wankery", as DHH calls it. It always makes me sad to see the wonderful gifts that Rails' brought us with its idioms ignored or thrown to the wayside in service of imagined problems.
+</p>

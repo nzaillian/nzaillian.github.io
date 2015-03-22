@@ -1,0 +1,51 @@
+---
+layout: post
+title:  "In Praise of the Humble Website"
+date:   2014-07-18
+categories: tech
+---
+
+<p>
+  The other day I had an informal talk with a friend about a project we had been offered. I can't divulge much about the project but I can say that it has, structurally, a lot in common with an ecommerce app. Users shop a class of product and check out. Work has already been done on this app. The "MVP" that has been built has a wholly decoupled "thick client" browser-based UI built in AngularJS. I have a decent amount of experience with AngularJS as well as the other, similarly popular (possibly moreso) javascript MVC framework Ember.js.
+</p>
+
+<p>
+I have seen a trend firsthand in the last several projects I have been offered - and a couple that I have taken on - toward the use of these javascript frameworks and decoupled, thick client architectures. Stunningly, in every one of these cases, the architecture is unambiguously more burden than benefit (much more, in fact) in respect of both development load and user experience.
+</p>
+
+<h2>Good Old-Fashioned Websites</h2>
+<p>
+  When I talk about "websites", I'm really talking about web applications, but those whose whose workflows are multi-page and form-based. This is in contrast to Single Page Apps, which are web applications that are piped to the browser as giant concatenated javascript files packaged with all the templates that comprise the UI and that implement workflows by passing data back and forth over the network to the server (generally passing data as JSON documents to a REST API) in such a way that your browser never refreshes. Below are some examples of each methodology in action.
+</p>
+
+<h2>Excellent Websites</h2>
+<p>...again I acknowledge my use of the term "website" is a stretch - I mean server-rendered, multi-page web apps with form-based workflows. Anyways, here are some exemplary applications built with this structure...</p>
+<ul>
+  <li><a href='https://github.com'>GitHub</a>
+  <li><a href='https://basecamp.com'>Basecamp</a>
+  <li><a href='https://coinbase.com'>Coinbase</a>
+  <li><a href='https://gilt.com'>Gilt</a>
+  <li><a href='https://zenpayroll.com'>ZenPayroll</a>
+  <li><a href='https://amazon.com'>amazon.com</a>
+  <li><a href='https://www.gov.uk/'>gov.uk</a>
+</ul>
+<h2>Excellent Single Page Apps</h2>
+<p>...and here are some excellent Single Page Apps that exemplify the most suitable use case for a thick client architecture:</p>
+<ul>
+  <li><a href='https://docs.google.com/spreadsheet/' target='_blank'>Google Spreadsheets</a></li>
+  <li><a href='http://duolingo.com/'>Duolingo</a></li>
+  <li><a href='http://prezi.com/'>Prezi</a></li>
+  <li><a href='http://www.montagebook.com/'>MontageBook.com</a></li>
+  <li><a href='https://soundcloud.com/'>SoundCloud</a></li>
+</ul>
+
+<h2>Defining the Problem</h2>
+<p>
+  The problem here is that most applications built as thick client apps have no need to adopt that architecture, and are, in fact, much poorer off both in respect of complexity and development load and, more importantly, in respect of user experience. There is a generation of developers who, I think, are learning web development with tools like AngularJS and Ember and so bring these tools to projects by default, even when they are completely unsuitable. 
+</p>
+<p>
+  These tools and architectures have a definite use case. In my experience, though, this use case is represented by maybe 20% of projects - mostly those that present a desktop-like UI like Prezi and Google Docs do or those that, like SoundCloud, GrooveShark and similar apps, entirely break user experience if a page refresh occurs.
+</p>
+<p>
+  It's my hope that if you read this and you are not already doing so, you will, on your next project, give deep consideration to what sort of application it is you are building and whether a thick client architecture really makes sense.
+</p>

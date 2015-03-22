@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "Back to The Future: Encrypt Emails the Old Fashioned Way - With PGP!"
+date:   2013-08-23
+categories: posts
+---
+<p>
+Since we now know that we <a href="http://en.wikipedia.org/wiki/PRISM_(surveillance_program)">can't reasonably expect</a> the emails we exchange with friends and colleagues to not be warehoused and read without our knowledge (and without a subpoena, warrant, or similar from the reading party), I want to shine a spotlight on one of the still-effective techniques available for restoring some privacy (with caveats) to personal email. This strategy is not new. In fact, it's quite old. I'm talking about <a href="http://www.gnupg.org">GnuGP</a> (GPG), a FOSS implementation of the <a href="http://en.wikipedia.org/wiki/Pretty_Good_Privacy#OpenPGP">OpenPGP</a> encryption standard, and <a href="https://gpgtools.org/news.html">GPGMail</a>, an awesome plugin for the native Mac Mail client.
+</p>
+
+<h2>Nowhere Else to Go</h2>
+
+<p>
+Like most people in the developer and tech business communities, I was pissed to learn that two successful providers of encrypted email service (Lavabit and Silent Circle) had been pressured out of existence by the government (update: now <a href="http://www.groklaw.net/article.php?story=20130818120421175">Groklaw</a> as well). I wasn't a user of either service because, frankly, it was news to me (as it was to most of the civilian population) that our constitution left room for the government's warehousing and arbitrary review of our emails. If these revelations had come a couple months before the Lavabit shutdown, I'd have been a customer.
+</p>
+
+<h2>You've Still Got Recourse</h2>
+<p>
+Now I don't consider total privacy a right when I sign a EULA, but I didn't see that in the EULA. Or the constitution. So I wanted to find a workable email privacy guard that put the keys in my hands. As a developer, I work with asymmetric crypto day-to-day (guess how many <a href="http://en.wikipedia.org/wiki/Secure_Shell">SSH</a> sessions I have open right now?). 
+</p>
+<p>
+I experimented with encrypting, signing and sending some messages with GPG from the command line. Then I discovered that there's <a href="https://gpgtools.org/news.html">an awesome drop-in plugin</a> for doing the same with a click or two in Mac Mail. Under the hood it's all the same, and I didn't have any issues getting the behavior I expected out of the app. Currently I'm using a 4096-bit key, which even the <a href="http://skeptics.stackexchange.com/questions/4163/has-pgp-been-broken-by-government-intelligence-agencies">experts are certain</a> is a long way from being crackable (even big, powerful government compute clusters would fall short by orders of magnitude). If you want to get started with GPGMail yourself there's a <a href="http://www.imore.com/how-secure-and-encrypt-your-os-x-mail-messages-gpgmail-2">really nice guide here</a>.
+</p>
+
+<h2>Big Caveats</h2>
+<p>
+There are three really big caveats with this strategy. One is that your messages are only as secure as your private key and passphrase. If someone gets those through a backdoor on your machine, a keylogger or through legal action/coercion, messages sent to you will be immediately decryptable (as will any messages you've sent to other parties if their keys and passphrases are compromised). The second is that, apparently, encrypted emails <a href="http://www.forbes.com/sites/andygreenberg/2013/06/20/leaked-nsa-doc-says-it-can-collect-and-keep-your-encrypted-data-as-long-as-it-takes-to-crack-it/">get purged with a lot less expediency</a> by government agencies than unencrypted ones. The third is that only the message is rendered secret by the PGP encryption. All other metadata, like your recipient and the email's path, are not protected. So use with care.
+</p>

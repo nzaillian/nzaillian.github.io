@@ -1,0 +1,43 @@
+---
+layout: post
+title:  "First Impressions of Digital Ocean"
+date:   2013-06-24
+categories: posts
+---
+
+<p>
+<a href="https://www.digitalocean.com">Digital Ocean</a> is a relatively young VPS provider with servers in New York, the Netherlands and San Francisco. My first introduction to them was working on a web app called <a href="http://rappad.co">RapPad</a> which helps people write and share rap lyrics and which I started contributing to a few months ago after it caught my eye on Hacker News.
+</p>
+<p>
+RapPad's owner, Amir, had it up on a VPS with Digital Ocean, which I was only vaguely aware of. I was pretty blown away with the slickness of our deploys (typical Rails deployment bottlenecks like asset compilation were carried out with literally 4x the speed of on my EC2 instance) and the speed with which I could traverse the file system, install packages and do various administrative tasks.
+</p>
+
+<p>
+I've been working on an <a href="http://www.evergreenapp.org">open source question and answer app</a> the last month or so and decided I'd use it as an opportunity to sign up with Digital Ocean and bake my own deployment image. I got a slice with 2 "cores" (always an ambiguous term in the world of VPSes), 4GB RAM and 60GB SSD storage. Evergreen is a Rails app so I went with a Rails stack I know to be comfortable and battle-tested. I started with an Ubuntu 12.04 LTS server image and installed <a href="http://nginx.org/">Nginx</a>, <a href="https://github.com/blog/517-unicorn">Unicorn</a>, <a href="http://memcached.org">memcached</a> and <a href="http://www.postgresql.org">PostgreSQL</a>. I added <a href="http://upstart.ubuntu.com">Upstart</a> scripts for a few of the services that didn't already have them (delayed_job (job queue), unicorn and memcached). I set aside 1gb of my slice's 4gb memory for memcached. Even though I've got all the services consolidated on a single box it would be easy to break then out if I ever needed to (but honestly can't see having to in the immediate future). I do single-step deployments with a standby <a href="https://github.com/capistrano/capistrano">Capistrano</a> recipe I have.
+</p>
+
+<p>
+  The aesthetics of Digital Ocean's administrative dashboard could definitely use an
+  overhaul. If you've worked with <a href="http://twitter.github.io/bootstrap">Twitter Bootstrap</a>
+  you'll recognize a lot of the UI as vanilla styling from that framework.
+  On the other hand, I almost appreciate the fact that the UI here 
+  is a little half baked because it suggests to me that the folks at Digital Ocean
+  know that this is not the key differentiator of their offering or the thing
+  that will make their users stick around (it's performance and
+  pricing), and while not tremendously 
+  polished in terms of aesthetics, the dashboard is sufficiently functional
+  (there isn't anything that I couldn't figure out how to do on my own - I never 
+  had to turn to the documentation).
+</p>
+
+<p>
+In terms of performance this VPS absolutely trounces my EC2 instance. More liberally cached actions in the app (some can be fully rendered with two cache hits) render in as few as 7ms (though network latency is usually at least 70ms, but still better than EC2 at least from here in New York). That said it's not exactly a fair comparison given that my EC2 box is an "m1.small" instance (1.7gb RAM, 1 "core") - a fairer comparison would be with an "m1.medium" instance. That said, I suspect much of the performance gain comes from the local SSD so there would likely still be a notable performance gap between my Digital Ocean VPS and even a more generously-provisioned <em>EBS-backed</em> EC2 instance. 
+</p>
+
+<p>
+Another huge bonus with Digital ocean is there being no distinction as far as I can tell between the hourly-billed VPS prices and monthly/yearly. With EC2 (and Amazon's other web services) there's a steep price premium for "on demand" capacity vs. "reserved" capacity. For instance, I pay $169 a year for my "reserved" instance <strong>plus</strong> about $20 a month depending on utilization. If I didn't pay the upfront money I'd be paying closer to $60 a month for the small instance. With minimal utilization and EBS storage, a medium reserved instance on EC2 will end up effectively costing you about $50 a month and be a little lower-spec'd than the comparable $40 a month Digital Ocean box. Of course you do get a lot more flexibility going the AWS route like the ability to arbitrarily grow and share the EBS volumes that back your instances (if you need more than the disk space allotted to your Digital Ocean VPS, right now the only solution I believe is to buy up a group of smaller instances and make a logical volume out of them using GlusterFS or similar, which would terrify me to do with a production application) and to leverage the whole suite of Amazon Web Services (most of the time) from within the same datacenter. Therefore if you're architecting for serious scale I think AWS will continue to be the most rational choice.
+</p>
+
+<p>
+  That said, for smaller projects that can accept the tradeoffs with respect to flexibility, I think Digital Ocean blows EC2 out of the water.
+</p>
