@@ -1,9 +1,6 @@
 markdown: rdiscount
 pygments: true
 permalink: /posts/:title
-rdiscount:
-  extensions: [smart]
-
 name: Nicholas Zaillian
 url: http://blog.nicholas.zaillian.com
 description: Nicholas Zaillian's blog. My primary home page is at http://nicholas.zaillian.com
