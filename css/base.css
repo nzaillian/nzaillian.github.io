@@ -308,3 +308,7 @@ strong {
   font-style: italic;
   margin-bottom: 24px;
 }
+
+.post-image {
+  display: block;
+}
