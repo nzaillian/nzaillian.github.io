@@ -1,5 +1,5 @@
 markdown: kramdown
-pygments: true
+highlighter: rouge
 permalink: /posts/:title
 name: Nicholas Zaillian
 url: http://blog.nicholas.zaillian.com
